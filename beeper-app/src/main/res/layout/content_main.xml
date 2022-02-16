@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8sp"
+        android:paddingLeft="12sp"
+        android:paddingRight="12sp"
+        android:paddingTop="8sp"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/app_name"
+            android:textColor="?attr/actionMenuTextColor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="fill_vertical|end"
+            android:linksClickable="false"
+            android:onClick="onAboutClick"
+            android:text="@string/action_about" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:scrollbars="horizontal|vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_beeps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2pt"
+                    android:layout_weight="1"
+                    android:text="@string/title_beeps" />
+
+                <TextView
+                    android:id="@+id/valueBeeps"
+                    style="@style/SliderValueText"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_beeps"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4pt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2pt"
+                    android:layout_weight="1"
+                    android:text="@string/title_delay" />
+
+                <TextView
+                    android:id="@+id/valueDelay"
+                    style="@style/SliderValueText"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_delay"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4pt" />
+
+            <Button
+                android:id="@+id/btn_defaults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8pt"
+                android:onClick="onDefaultBtnClick"
+                android:text="@string/action_defaults"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/text_tones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2pt"
+                android:text="@string/title_tones" />
+
+            <Spinner
+                android:id="@+id/spinner_tones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-2pt"
+                android:spinnerMode="dialog" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2pt"
+                    android:layout_weight="1"
+                    android:text="@string/title_volume" />
+
+                <TextView
+                    android:id="@+id/valueVolume"
+                    style="@style/SliderValueText"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_volume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4pt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2pt"
+                    android:layout_weight="1"
+                    android:text="@string/title_duration" />
+
+                <TextView
+                    android:id="@+id/valueDuration"
+                    style="@style/SliderValueText"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seek_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4pt" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onPlayBtnClick"
+        android:text="@string/action_play"
+        android:visibility="visible" />
+
+</LinearLayout>
