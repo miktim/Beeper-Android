@@ -1,4 +1,4 @@
- Android Beeper. MIT (c) 2022 miktim@mail.ru
+ Android Java Beeper. MIT (c) 2022 miktim@mail.ru
 
  Release notes:
   - a new beep interrupts the previous one;
@@ -17,3 +17,6 @@
    https://stackoverflow.com/questions/29509010/how-to-play-a-short-beep-to-android-phones-loudspeaker-programmatically
    https://stackoverflow.com/questions/11964623/audioflinger-could-not-create-track-status-12
 
+ Application
+   screenshort: https://./beeper-app-screenshot.png
+   .apk: https://./beeper-app/v1/
