@@ -2,8 +2,8 @@
 
  Release notes:
   - a new beep interrupts the previous one;
-  - in android 4.0 the volume of the beep depends on the system volume,
-    in android 7.0 it is the absolute volume.
+  - Android 4.0: the volume of the beep depends on the system volume,
+    Android 7.0: it is the absolute volume.
 
  Overview:
    Class Beeper;
@@ -18,5 +18,5 @@
    https://stackoverflow.com/questions/11964623/audioflinger-could-not-create-track-status-12
 
  Application
-   screenshort: ./beeper-app-screenshot.png
-   .apk:        ./beeper-app/v1/
+   screenshort: https://github.com/miktim/Beeper/blob/master/beeper-app-screenshot.png
+   download:    https://github.com/miktim/Beeper/blob/master/beeper-app/v1/beeper-app-v1.apk
