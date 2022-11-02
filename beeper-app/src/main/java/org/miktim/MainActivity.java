@@ -19,6 +19,7 @@ import org.beeper.R;
 public class MainActivity extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
 
+//TODO rotate dialog layout on screen orientation change
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

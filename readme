@@ -1,22 +1,28 @@
- Android Java Beeper. MIT (c) 2022 miktim@mail.ru
+#Android Tone Player and Java Beeper class. MIT (c) 2022 miktim@mail.ru
 
- Release notes:
-  - a new beep interrupts the previous one;
-  - Android 4.0: the volume of the beep depends on the system volume,
-    Android 7.0: it is the absolute volume.
+ Tone Player:
+   screenshot: https://github.com/miktim/Beeper/blob/master/beeper-app-screenshot.png
+   download:   https://github.com/miktim/Beeper/blob/master/beeper-app/v1/beeper-app-v1.apk
 
- Overview:
-   Class Beeper;
-     static void beep(); // with default beeper tone and volume
-     static void beep(int volume);
-     static void beep(int toneType, int volume, int durationMs);
-     static void cancel(); // interrupt current beep
+ Class Beeper:
+   Source: https://github.com/miktim/Beeper/blob/master/beeper/src/main/java/org/miktim/Beeper.java
 
- See:
+   Release notes:
+     - beeps are queued;
+     - Android 4.0: the volume of the beep depends on the system volume,
+       Android 7.0: it is the absolute volume.
+
+   static void beep(); // defaults: TONE_CDMA_ABBR_ALERT, 75%, 100ms
+   static void beep(int volume);
+   static void beep(int volume, int durationMs);
+   static void beep(int toneType, int volume, int durationMs);
+   static void pause(int durationMs); // play 'silence'
+   static void cancel(); // interrupting current sequence of beeps
+   static void await();  // waiting for the completion of a sequence of beeps
+
+ Android tone types:
    https://developer.android.com/reference/android/media/ToneGenerator
+ See also:
    https://stackoverflow.com/questions/29509010/how-to-play-a-short-beep-to-android-phones-loudspeaker-programmatically
    https://stackoverflow.com/questions/11964623/audioflinger-could-not-create-track-status-12
 
- Application
-   screenshort: https://github.com/miktim/Beeper/blob/master/beeper-app-screenshot.png
-   download:    https://github.com/miktim/Beeper/blob/master/beeper-app/v1/beeper-app-v1.apk
