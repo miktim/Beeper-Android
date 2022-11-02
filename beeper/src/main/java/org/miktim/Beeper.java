@@ -2,15 +2,9 @@
  * Android Beeper. MIT (c) 2022 miktim@mail.ru
  *
  * Release notes:
- *  - a new beep interrupts the previous one;
+ *  - beeps are queued;
  *  - in Android 4.0 the volume of the beep depends on the system volume,
  *    in Android 7.0 it is the absolute volume.
- * Overview:
- *   Class Beeper;
- *     static void beep(); // with default beeper tone and volume
- *     static void beep(int volume);
- *     static void beep(int toneType, int volume, int durationMs);
- *     static void cancel(); // interrupt current beep
  * See:
  *   https://developer.android.com/reference/android/media/ToneGenerator
  *   https://stackoverflow.com/questions/29509010/how-to-play-a-short-beep-to-android-phones-loudspeaker-programmatically
