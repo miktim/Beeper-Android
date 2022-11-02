@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
 
         initDropDown(findViewById(R.id.spinner_tones), ToneGeneratorTones.getNames(), 0);
         initSlider(findViewById(R.id.seek_volume), 0, 100, 50);
-        initSlider(findViewById(R.id.seek_duration), -1, 1000, 100);
+        initSlider(findViewById(R.id.seek_duration), 0, 1000, 100);
         setBeeperDefaults();
     }
 

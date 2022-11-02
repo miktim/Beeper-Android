@@ -12,10 +12,10 @@
  */
 package org.miktim;
 
-import android.media.AudioManager;
 import android.media.ToneGenerator;
 
 import static android.media.AudioManager.STREAM_MUSIC;
+import static android.media.AudioManager.STREAM_NOTIFICATION;
 
 public final class Beeper {
     public static final int DEFAULT_TONE = ToneGenerator.TONE_CDMA_ABBR_ALERT;
@@ -74,13 +74,15 @@ public final class Beeper {
             try {
                 mPrevBeepThread.join();
                 if (mTone != TONE_PAUSE) {
-                    toneGen = new ToneGenerator(STREAM_MUSIC, mVolume);
+//                    toneGen = new ToneGenerator(STREAM_MUSIC, mVolume);
+                    toneGen = new ToneGenerator(STREAM_NOTIFICATION, mVolume);
                     toneGen.startTone(mTone, mDuration);
                 }
                 Thread.sleep(mDuration);
             } catch (InterruptedException ie) {
                 mPrevBeepThread.interrupt();
             } catch (RuntimeException ignored) {
+                ignored.printStackTrace();
             }
             if (toneGen != null) {
                 toneGen.stopTone();
