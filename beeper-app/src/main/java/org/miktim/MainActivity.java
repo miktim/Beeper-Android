@@ -19,7 +19,9 @@ import org.beeper.R;
 public class MainActivity extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
 
-//TODO rotate dialog layout on screen orientation change
+    AsyncTask mBeepsPlayer;
+
+    //TODO rotate dialog layout on screen orientation change
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         initSlider(findViewById(R.id.seek_volume), 0, 100, 50);
         initSlider(findViewById(R.id.seek_duration), 0, 1000, 100);
         setBeeperDefaults();
+        Beeper.beep();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 // https://stackoverflow.com/questions/13194823/how-to-get-the-previous-or-next-view
         ViewGroup container = (ViewGroup) slider.getParent();
         int indexOfChild = container.indexOfChild(slider);
-        container = (ViewGroup)container.getChildAt(indexOfChild - 1);
+        container = (ViewGroup) container.getChildAt(indexOfChild - 1);
         TextView valueText = (TextView) container.getChildAt(1);
         valueText.setText("" + progress);
     }
@@ -83,8 +86,6 @@ public class MainActivity extends AppCompatActivity
         setBeeperDefaults();
     }
 
-    AsyncTask mBeepsPlayer;
-
     @SuppressLint("StaticFieldLeak")
 
     // AsyncTask: This class was deprecated in API level 30.
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onPlayBtnClick(View view) {
         if (mBeepsPlayer != null) {
+            Beeper.cancel();
             mBeepsPlayer.cancel(true);
         } else {
             mBeepsPlayer = (new AsyncTask<Integer, Void, Boolean>() {
@@ -110,14 +112,11 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 protected Boolean doInBackground(Integer[] params) {
-                    try {
-                        for (int i = 0; i < params[0]; i++) {
-                            Beeper.beep(params[2], params[3], params[4]);
-                            Thread.sleep(params[1]);
-                        }
-                    } catch (InterruptedException ignored) {
-                        return false;
+                    for (int i = 0; i < params[0]; i++) {
+                        Beeper.beep(params[2], params[3], params[4]);
+                        Beeper.pause(params[1]);
                     }
+                    Beeper.await();
                     return true;
                 }
 
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        if(seekBar.equals(((SeekBar) findViewById(R.id.seek_beeps))) && i == 0)
+        if (seekBar.equals(((SeekBar) findViewById(R.id.seek_beeps))) && i == 0)
             ((SeekBar) findViewById(R.id.seek_beeps)).setProgress(1);
         else showSliderProgress(seekBar, i);
     }

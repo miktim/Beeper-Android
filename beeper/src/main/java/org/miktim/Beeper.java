@@ -14,7 +14,6 @@ package org.miktim;
 
 import android.media.ToneGenerator;
 
-import static android.media.AudioManager.STREAM_MUSIC;
 import static android.media.AudioManager.STREAM_NOTIFICATION;
 
 public final class Beeper {
@@ -27,22 +26,22 @@ public final class Beeper {
     private static Thread sBeepThread = DEFAULT_THREAD;
 
     public static void beep() {
-        beep(DEFAULT_VOLUME);
+        beep(DEFAULT_TONE, DEFAULT_VOLUME, DEFAULT_DURATION);
     }
 
     public static void beep(int volume) {
         beep(DEFAULT_TONE, volume, DEFAULT_DURATION);
     }
 
-    public static void beep(int volume, int duration) {
-        beep(DEFAULT_TONE, volume, duration);
+    public static void beep(int volume, int durationMs) {
+        beep(DEFAULT_TONE, volume, durationMs);
     }
 
     synchronized public static void beep(int toneType, int volume, int durationMs) {
         (sBeepThread = new BeepGenerator(toneType, volume, durationMs)).start();
     }
 
-    public static void pause(int durationMs) {
+    public static void pause(int durationMs) { // play 'silence'
         beep(TONE_PAUSE, 0, durationMs);
     }
 
