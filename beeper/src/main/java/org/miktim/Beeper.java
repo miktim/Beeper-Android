@@ -2,9 +2,7 @@
  * Android Beeper. MIT (c) 2022 miktim@mail.ru
  *
  * Release notes:
- *  - beeps are queued;
- *  - in Android 4.0 the volume of the beep depends on the system volume,
- *    in Android 7.0 it is the absolute volume.
+ *  - beeps are queued.
  * See:
  *   https://developer.android.com/reference/android/media/ToneGenerator
  *   https://stackoverflow.com/questions/29509010/how-to-play-a-short-beep-to-android-phones-loudspeaker-programmatically
@@ -21,7 +19,7 @@ public final class Beeper {
     public static final int DEFAULT_VOLUME = 75; //(AudioManager.STREAM_SYSTEM * ToneGenerator.MAX_VOLUME) / 15;
     public static final int DEFAULT_DURATION = 100;
 
-    private static final int TONE_PAUSE = 0xffffffff;
+    private static final int TONE_PAUSE = 0xffffffff; // TONE_CDMA_SIGNAL_OFF ?
     private static final Thread DEFAULT_THREAD = new Thread();
     private static Thread sBeepThread = DEFAULT_THREAD;
 
@@ -56,7 +54,7 @@ public final class Beeper {
         }
     }
 
-    private static class BeepGenerator extends Thread {
+     private static class BeepGenerator extends Thread {
         private int mTone;
         private int mVolume;
         private int mDuration;
@@ -80,8 +78,8 @@ public final class Beeper {
                 Thread.sleep(mDuration);
             } catch (InterruptedException ie) {
                 mPrevBeepThread.interrupt();
-            } catch (RuntimeException ignored) {
-                ignored.printStackTrace();
+            } catch (RuntimeException re) {
+                re.printStackTrace();
             }
             if (toneGen != null) {
                 toneGen.stopTone();
